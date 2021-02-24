@@ -3,7 +3,7 @@
 # This is the image that we are going to use to create our image
 FROM golang:latest 
 
-# Stablishing the working directory on the container
+# Establishing the working directory on the container
 WORKDIR /go/src/app
 
 # Copying files of server folder to our container on the working directory
