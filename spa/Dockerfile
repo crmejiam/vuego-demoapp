@@ -29,3 +29,4 @@ RUN npm run build
 # To install NGINX and execute the website on it
 FROM nginx:latest
 COPY --from=0 /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
