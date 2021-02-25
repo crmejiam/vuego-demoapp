@@ -1,18 +1,14 @@
 # This is a container for the frontend
 
 # This is the image that we are going to use to create our image
-FROM node:lts-alpine
-
-# Establishing the endpoint of the frontend 
-EXPOSE 80
-RUN echo 'VUE_APP_API_ENDPOINT="http://10.0.0.8:4001/api"' >> .env.production
-# If it doesn't work try to erase the :4001, if it doesn't work either try to erase the /api too
-
-# install simple http server for serving static content
-RUN npm install -g http-server
+FROM node:latest
 
 # make the 'app' folder the current working directory
 WORKDIR /app
+
+# Establishing the endpoint of the frontend 
+EXPOSE 80
+RUN echo "VUE_APP_API_ENDPOINT=\"http://127.0.0.1:4001/api\"" > .env.production
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
@@ -28,5 +24,6 @@ RUN npm run build
 
 # To install NGINX and execute the website on it
 FROM nginx:latest
-COPY --from=0 /app/dist /usr/share/nginx/html
+COPY --from=0 /app/dist .
 COPY nginx.conf /etc/nginx/nginx.conf
+
