@@ -1,7 +1,7 @@
 # This is the container for the backend
 
 # This is the image that we are going to use to create our image
-FROM golang:latest 
+FROM golang:1.16-alpine3.13
 
 # Establishing the working directory on the container
 WORKDIR /go/src/app
